@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Auth;
 
 use App\Http\Requests\ApiFormRequest;
+use App\Support\Roles;
+use Illuminate\Validation\Rule;
 
 class RegisterRequest extends ApiFormRequest
 {
@@ -17,6 +19,7 @@ class RegisterRequest extends ApiFormRequest
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', 'string', 'confirmed', 'min:8'],
+            'role' => ['sometimes', 'string', Rule::in(Roles::all())],
         ];
     }
 }
