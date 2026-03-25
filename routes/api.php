@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\SprintTaskController;
 use App\Http\Middleware\EnsureUserHasRole;
 use App\Support\Roles;
 use Illuminate\Http\JsonResponse;
@@ -17,6 +18,8 @@ Route::middleware(['auth:sanctum', EnsureUserHasRole::class.':'.Roles::STUDENT])
     Route::get('students/dashboard', static fn (): JsonResponse => response()->json([
         'message' => 'Student area.',
     ]));
+
+    Route::get('sprints/{sprint}/tasks', [SprintTaskController::class, 'index']);
 });
 
 Route::middleware(['auth:sanctum', EnsureUserHasRole::class.':'.Roles::MENTOR])->group(function () {
