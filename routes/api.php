@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\SprintTaskController;
 use App\Http\Middleware\EnsureUserHasRole;
 use App\Support\Roles;
 use Illuminate\Http\JsonResponse;
